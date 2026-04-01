@@ -47,7 +47,7 @@ if page == "单场预测":
         st.warning("请先在左侧配置 API Key")
     else:
         # 检查模型是否已训练
-        if not st.session_state.model_manager.ensemble_model:
+        if not st.session_state.model_manager.is_trained:
             if not st.session_state.model_manager.load():
                 st.info("模型未训练，请先前往「模型管理」页面训练模型")
         
@@ -145,7 +145,7 @@ elif page == "批量预测":
     
     # 上传文件
     uploaded_file = st.file_uploader("上传对阵列表", type="csv")
-    if uploaded_file and st.session_state.model_manager.ensemble_model:
+    if uploaded_file and st.session_state.model_manager.is_trained:
         input_df = pd.read_csv(uploaded_file)
         st.dataframe(input_df)
         
