@@ -9,6 +9,12 @@ import xgboost as xgb
 import lightgbm as lgb
 from scipy.stats import poisson
 
+# 尝试导入joblib
+try:
+    import joblib
+except ImportError:
+    from sklearn.externals import joblib
+    
 class FootballModelManager:
     def __init__(self, model_dir="./models/"):
         self.model_dir = model_dir
